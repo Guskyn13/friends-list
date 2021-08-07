@@ -1,0 +1,42 @@
+
+
+<% if user_signed_in? %>
+
+<h1>Friend List</h1>
+
+<table class="table table-dark table-striped table-bordered table-hover">
+     <thead>
+          <tr>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Phone</th>
+               <th></th>
+          </tr>
+     </thead>
+
+     <tbody>
+
+     <% @friends.each do |friend| %>
+     <% if friend.user == current_user %>
+
+     <tr>
+          <td>
+               <%= link_to friend.first_name + ' ' + friend.last_name, friend %></td>
+
+          <td><%= friend.email %></td>
+          <td><%= friend.phone %></td>
+          <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+     </tr>
+<% end %>
+<% end %>
+
+</tbody>
+</table>
+
+<br>
+
+<% else %>
+
+     <h1>Lets build a friends list.</h1>
+
+<% end %>
